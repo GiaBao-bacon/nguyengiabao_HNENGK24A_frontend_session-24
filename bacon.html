@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let array  = [];
+      do {
+        chose = +prompt(
+          "MENU\n" +
+            "1. Nhập vào mảng\n" +
+            "2. Hiển thị mảng\n" +
+            "3. Tìm các phần tử chẵn lẻ\n" +
+            "4. Trung bình cộng các phần tử trong mảng\n" +
+            "5. Xóa phần tử\n" +
+            "6. Phần tử lớn thứ hai\n" +
+            "7. Thoát\n" +
+            "Lựa chọn của bạn: "
+        );
+        switch (chose) {
+          case 1:
+            let number  = +prompt("Mời bạn nhập số lượng phần tử trong mảng");
+            for (let i = 0; i < number; i++) {
+              array[i] = +prompt(`Phần tử nằm ở vị trí thứ${i + 1}`);
+            }
+            break;
+          case 2:
+            alert(array);
+
+            break;
+          case 3:
+            let even = "";
+            let odd = "";
+            for (const element of array) {
+              +element % 2 == 0
+                ? (even += element + " ")
+                : (odd += element + " ");
+            }
+            alert(`Chẵn ${even}\n` + `Lẻ ${odd}`);
+            break;
+          case 4:
+            let sum = 0;
+            for (const element of array) {
+              sum = sum + +element;
+            }
+            let result = sum / array.length;
+            alert(result);
+            break;
+          case 5:
+            let index = +prompt("Mời bạn nhập vị trí muốn xóa");
+            array.splice(index - 1, 1);
+            alert(array);
+            break;
+          case 6:
+            let arrayAfter = array;
+            for (let i = 0; i < arrayAfter.length; i++) {
+              for (let j = 0; j < arrayAfter.length - 1; j++) {
+                if (arrayAfter[j] > arrayAfter[j + 1]) {
+                  let value = arrayAfter[j];
+                  arrayAfter[j] = arrayAfter[j + 1];
+                  arrayAfter[j + 1] = value;
+                }
+              }
+            }
+
+            let isNotMaxSecond = true;
+            do {
+              if (
+                arrayAfter[arrayAfter.length - 1] == arrayAfter[arrayAfter.length - 2]
+              ) {
+                arrayAfter.pop();
+              } else {
+                isNotMaxSecond = false;
+              }
+            } while (isNotMaxSecond);
+            alert(arrayAfter[arrayAfter.length - 2]);
+
+            break;
+
+          default:
+            break;
+        }
+      } while (chose !== 7);
+    </script>
+  </body>
+</html>
